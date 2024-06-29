@@ -101,11 +101,11 @@ void Kruskal(Graph* graph) {
 }
 
 // 최소 거리를 가지는 정점을 반환하는 함수
-int minDistance(int dist[], int sptSet[], int V) {
+int minDistance(int dist[], int visited[], int V) {
     int min = INT_MAX; // 현재까지 발견된 최소 거리(초기값은 INT_MAX)
     int min_index = 0; // 최소 거리를 가진 정점의 인덱스 저장할 변수
     for (int v = 1; v <= V; v++)
-        if (sptSet[v] == 0 && dist[v] <= min){
+        if (visited[v] == 0 && dist[v] <= min){
             min = dist[v];
             min_index = v;
         }
@@ -140,7 +140,7 @@ void Dijkstra(Graph* graph, int src) {
         for (int i = 0; i < graph->E; i++) {
             if (graph->edge[i].src == u || graph->edge[i].dest == u) {
                 int v = (graph->edge[i].src == u) ? graph->edge[i].dest : graph->edge[i].src;
-                if (!visited[v] && dist[u] != INT_MAX && dist[u] + graph->edge[i].weight < dist[v]) {
+                if (!visited[v] && dist[u] + graph->edge[i].weight < dist[v]) {
                     dist[v] = dist[u] + graph->edge[i].weight;
                     parent[v] = u;
                 }
