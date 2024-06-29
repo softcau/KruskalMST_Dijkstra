@@ -289,6 +289,5 @@ int main() {
     free(graph);
 
     getch();
-
     return 0;
 }
